@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- The head section contains metadata and links to styles, it is not visible on the page -->
+    <!-- This meta tag tells the browser to use standard text encoding (UTF-8) so special characters work properly -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- The title appears in the browser tab at the very top of the window -->
+    <!-- The <title> tag defines the name of the webpage displayed in the browser tab. -->
+    <title>Personal Portfolio</title>
+    <!-- This link connects our HTML file to our external CSS file where all the styling rules live -->
+    <link rel="stylesheet" href="style.css?v=3">
+</head>
+
+<body>
+    <!-- The main visible content of the webpage starts here -->
+    <!-- The header contains the website title and navigation menu -->
+    <header>
+        <!-- The <h1> tag is the main heading of the page, acting as the primary title for the content below. -->
+        <h1>Welcome to my Portfolio</h1>
+        <!-- Navigation links to jump to different sections of the page -->
+        <nav>
+            <a href="index.html#about">About Me</a> |
+            <!-- The href attribute points to the ID of another section, creating an in-page link that scrolls smoothly to that section. -->
+            <a href="index.html#projects">My Projects</a> |
+            <a href="feedback.html">Feedback</a> |
+            <a href="index.html#contact-me">Contact</a>
+        </nav>
+    </header>
+
+    <!-- The main container for all the different sections of the portfolio -->
+    <main>
+        <!-- About Me section: This is where I describe myself and list my skills -->
+        <section id="about" class="section-card about-card">
+            <!-- h2 is a heading tag, used for the main titles of our sections -->
+            <h2>About Me</h2>
+            <!-- We use a div container here to group our images together so we can style them as a pair -->
+            <div class="about-images">
+                <!-- The img tag embeds an image. The src attribute tells it where to find the file, and alt provides text for screen readers -->
+                <!-- The width attribute controls the display size of the image, allowing us to resize it without changing the original file. -->
+                <img src="project_images/my_face.png" alt="A recent photo of my face" width="200" tabindex="0">
+                <img src="project_images/workspace.png"
+                    alt="A recent photo of my laptop workspace showing the bridge wallpaper and code editors"
+                    width="400" tabindex="0">
+            </div>
+            <!-- The <p> tag defines a paragraph, which is used to structure standard body text. -->
+            <p>Here is some information about my life.</p>
+            <p><strong>My GitHub Profile:</strong> <a href="https://github.com/AF2310"
+                    target="_blank">github.com/AF2310</a></p>
+            <!-- ul stands for Unordered List, which creates a bulleted list -->
+            <ul>
+                <!-- li stands for List Item. strong makes the text bold -->
+                <li><strong>Memory:</strong> When I was little I used to play a lot of football.</li>
+                <li><strong>Inspiration:</strong> My inspiration comes from The Social Network (Facebook movie) and Mr.
+                    Robot.</li>
+                <li><strong>Future Goal:</strong> My goal is to get a stable job in the IT sector.</li>
+            </ul>
+
+            <!-- Skill bars to show my proficiency in different languages -->
+            <h3>Stuff I know</h3>
+            <div class="skills-wrapper">
+                <!-- Each skill is grouped in its own div container -->
+                <div class="skill-container">
+                    <strong>HTML</strong>
+                    <!-- We use a div here that will be styled by CSS to look like a colorful progress bar -->
+                    <!-- The text inside this element is what the user actually sees on the screen. -->
+                    <div class="skill-bar html-skill">Beginner</div>
+                    <p class="skill-description">Structured this portfolio using semantic tags.</p>
+                </div>
+                <div class="skill-container">
+                    <strong>CSS</strong>
+                    <!-- The text inside this element is what the user actually sees on the screen. -->
+                    <div class="skill-bar css-skill">Beginner</div>
+                    <p class="skill-description">Built a responsive grid layout for the projects page.</p>
+                </div>
+                <div class="skill-container">
+                    <strong>Java</strong>
+                    <!-- The text inside this element is what the user actually sees on the screen. -->
+                    <div class="skill-bar java-skill">Beginner</div>
+                    <p class="skill-description">Developed a JavaFX fast-food kiosk app in a team.</p>
+                </div>
+                <div class="skill-container">
+                    <strong>TypeScript</strong>
+                    <!-- The text inside this element is what the user actually sees on the screen. -->
+                    <div class="skill-bar ts-skill">Beginner</div>
+                    <p class="skill-description">Built an Ancient Greek learning web app with React.</p>
+                </div>
+                <div class="skill-container">
+                    <strong>C#</strong>
+                    <!-- The text inside this element is what the user actually sees on the screen. -->
+                    <div class="skill-bar cs-skill">Beginner</div>
+                    <p class="skill-description">Created a Windows Forms app to manage .NET projects.</p>
+                </div>
+                <div class="skill-container">
+                    <strong>Python</strong>
+                    <!-- The text inside this element is what the user actually sees on the screen. -->
+                    <div class="skill-bar py-skill">Beginner</div>
+                    <p class="skill-description">Automated a security testing pipeline with local LLMs.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline Section: Using CSS to draw a vertical line and dots without images -->
+        <section id="timeline" class="section-card timeline-card">
+            <h2>My Coding Journey</h2>
+            <div class="timeline-container">
+                <!-- Each event in the timeline is its own block -->
+                <div class="timeline-item">
+                    <div class="timeline-date">June 2025</div>
+                    <div class="timeline-content">
+                        <strong>First Major Desktop App</strong>
+                        <p>I started building KIOSK, a self-service fast food application. It was my first deep dive
+                            into Java, JavaFX, and connecting to a MySQL database to handle real user orders.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">December 2025</div>
+                    <div class="timeline-content">
+                        <strong>Expanding to Web Development</strong>
+                        <p>I built an Ancient Greek Learning Web App using Vite and React. This project introduced me to
+                            the world of TypeScript, modern web frameworks, and styling with Tailwind CSS.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">March 2026</div>
+                    <div class="timeline-content">
+                        <strong>Exploring Cybersecurity & AI</strong>
+                        <p>I wanted to secure my applications better, so I developed an automated security testing
+                            pipeline. I integrated local LLMs via Ollama to autonomously find vulnerabilities in
+                            containerized web apps.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">June 2026</div>
+                    <div class="timeline-content">
+                        <strong>Mastering .NET & Tooling</strong>
+                        <p>I created the DevOps Helper, a Windows Forms application that scans folders for .sln and
+                            .csproj files. It helped me automate restoring, building, and testing my C# projects with
+                            ease.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">August 2026</div>
+                    <div class="timeline-content">
+                        <strong>Day 42 of 100 Days of Code</strong>
+                        <p>On the 42nd day of my dedicated coding challenge, I completely refactored this portfolio site
+                            to a responsive, single-page layout.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section: This displays my previous work using a CSS Grid layout -->
+        <section id="projects">
+            <h2>My Projects</h2>
+            <!-- This container holds all my project cards and arranges them automatically -->
+            <div class="projects-container">
+                <!-- An individual project card. The extra class project-green lets us give this card a specific color theme in CSS -->
+                <div class="project project-green">
+                    <h3>Ancient Greek Learning Web App</h3>
+                    <img src="project_images/project1.png"
+                        alt="Screenshot of the Ancient Greek learning web app made with Lovable" tabindex="0">
+                    <p>Made using prompts and Lovable.</p>
+                    <p><strong>URL:</strong> <a href="https://kotoba-explorer.lovable.app/"
+                            target="_blank">kotoba-explorer.lovable.app</a></p>
+                    <p><strong>GitHub:</strong> <a href="https://github.com/AF2310/greek-bloom"
+                            target="_blank">AF2310/greek-bloom</a></p>
+                    <p><strong>Technologies used:</strong></p>
+                    <!-- A bulleted list of the technologies I used for this project -->
+                    <ul>
+                        <li>Bun 1.3.4</li>
+                        <li>Vite 7.2.7</li>
+                        <li>TypeScript</li>
+                        <li>React 19.2.1</li>
+                        <li>shadcn-ui</li>
+                        <li>Tailwind CSS</li>
+                    </ul>
+                    <p><strong>Challenges Faced:</strong> Getting the Vite and React setup to work seamlessly with
+                        shadcn-ui and Tailwind CSS required troubleshooting dependency versions and learning how the
+                        build system packages assets for production.</p>
+                </div>
+
+                <div class="project project-blue">
+                    <h3>.NET Project Scanner (Windows Forms)</h3>
+                    <img src="project_images/project2.png"
+                        alt="Screenshot of the .NET Project Scanner Windows Forms App" tabindex="0">
+                    <p><strong>Description:</strong> Simple Windows Forms app for checking .NET projects. It scans a
+                        folder, finds .sln and .csproj files, runs restore/build/test, and saves a JSON report for each
+                        target.</p>
+                    <p><strong>GitHub:</strong> <a href="https://github.com/AF2310/Devops-Helper"
+                            target="_blank">AF2310/Devops-Helper</a></p>
+                    <p><strong>Features:</strong></p>
+                    <ul>
+                        <li>Pick a folder containing .NET projects or solutions.</li>
+                        <li>Locate .sln and .csproj files via ProjectScanner.</li>
+                        <li>Run restore/build/test sequences via BuildOrchestrator and CommandRunner.</li>
+                        <li>Collect status and output in ResultReport.</li>
+                        <li>Save results to JSON using ReportWriter.</li>
+                        <li>Remember the last folder via AppSettings.</li>
+                    </ul>
+                    <p><strong>Challenges Faced:</strong> Figuring out how to programmatically execute `dotnet` CLI
+                        commands from within a C# Windows Forms application and capturing the standard output
+                        asynchronously without freezing the user interface.</p>
+                </div>
+
+                <div class="project project-yellow">
+                    <h3>Automated Security Testing Pipeline</h3>
+                    <img src="project_images/project3.png" alt="Screenshot of the Automated Security Testing Pipeline"
+                        tabindex="0">
+                    <img src="project_images/pentest_main.png" alt="Additional pentesting screenshot" tabindex="0">
+                    <p><strong>GitHub:</strong> <a href="https://github.com/AF2310/applying-pentesting-tools"
+                            target="_blank">AF2310/applying-pentesting-tools</a></p>
+                    <p><strong>Description:</strong> An autonomous security assessment framework utilizing local LLMs
+                        (Ollama) and industry-standard tools (ZAP) to identify vulnerabilities in containerized web
+                        applications.</p>
+                    <p><strong>Requirements & Technologies:</strong></p>
+                    <ul>
+                        <li><strong>Ollama:</strong> <code>ollama serve</code> (Keep running in a separate terminal)
+                        </li>
+                        <li><strong>Models:</strong> <code>ollama pull llama3.1:latest</code></li>
+                        <li><strong>Docker:</strong> Docker Desktop (Windows/Mac/Linux)</li>
+                    </ul>
+                    <p><strong>Challenges Faced:</strong> Integrating the local LLM (Ollama) with the ZAP security tool
+                        meant handling unpredictable AI responses and ensuring the Docker networking allowed the
+                        containers to communicate securely.</p>
+                </div>
+
+                <div class="project project-pink">
+                    <h3>Kiosk Self-Service Fast Food Application</h3>
+                    <!-- A special container to hold multiple screenshots for this project -->
+                    <div class="image-grid-4">
+                        <img src="project_images/Screenshot (10).png" alt="Kiosk application screenshot 10"
+                            tabindex="0">
+                        <img src="project_images/Screenshot (11).png" alt="Kiosk application screenshot 11"
+                            tabindex="0">
+                        <img src="project_images/Screenshot (12).png" alt="Kiosk application screenshot 12"
+                            tabindex="0">
+                        <img src="project_images/Screenshot (13).png" alt="Kiosk application screenshot 13"
+                            tabindex="0">
+                        <img src="project_images/Screenshot (14).png" alt="Kiosk application screenshot 14"
+                            tabindex="0">
+                        <img src="project_images/Screenshot (15).png" alt="Kiosk application screenshot 15"
+                            tabindex="0">
+                    </div>
+                    <p><strong>GitHub:</strong> <a href="https://github.com/AF2310/KIOSK"
+                            target="_blank">AF2310/KIOSK</a></p>
+                    <p><strong>Description:</strong> A self-service fast food kiosk application built using Java and
+                        JavaFX.</p>
+                    <p><strong>Technologies used:</strong></p>
+                    <ul>
+                        <li>Java</li>
+                        <li>JavaFX</li>
+                        <li>Mysql</li>
+                    </ul>
+                    <p><strong>Challenges Faced:</strong> Designing an intuitive JavaFX user interface while managing
+                        the background MySQL database connection state to prevent the application from crashing if the
+                        database temporarily went offline.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section: A simple HTML form for users to send me an email -->
+        <section id="contact-me">
+            <h2>Send me an email</h2>
+            <!-- The form element collects user input. The action attribute tells it where to send the data (an email address here) -->
+            <form action="mailto:student@example.com" method="post" enctype="text/plain">
+                Name: <!-- A single-line text input field for the users name -->
+                <!-- The <input> tag creates a field for user data entry. Attributes like type="text" define what kind of input is expected. -->
+                <input type="text" name="name"><br><br>
+                Email: <input type="email" name="email"><br><br>
+                Message: <br><!-- A multi-line text box for the user to type a longer message -->
+                <textarea name="message" rows="3" cols="20"></textarea><br><br>
+                <!-- A button that submits the form data -->
+                <input type="submit" value="Submit Form">
+            </form>
+        </section>
+    </main>
+
+    <!-- The footer appears at the very bottom of the page -->
+    <footer>
+        <p>Email me at student@example.com</p>
+        <p>Copyright 2026</p>
+        <p><a href="#">Privacy Policy</a> - <a href="#">Terms</a></p>
+    </footer>
+</body>
+
+</html>

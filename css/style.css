@@ -1,0 +1,401 @@
+/* CSS reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* The body selector styles the entire background and default text of the page */
+body {
+  /* Seed Constraint: Arial or generic sans-serif font */
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f8fafc;
+  /* Modern slate light background */
+  color: #334155;
+  /* Modern slate text */
+}
+
+/* Styling for the top header section, making it dark with white text */
+header {
+  background-color: #0f172a;
+  /* Deep premium slate */
+  color: white;
+  padding: 30px 20px;
+  /* Increased padding */
+  text-align: center;
+}
+
+header nav {
+  margin-top: 20px;
+}
+
+/* Global Links (Phase 5 Interactions) */
+a {
+  color: #3b82f6;
+  /* Modern blue */
+  text-decoration: none;
+  /* Removes default underlining */
+  padding: 4px 8px;
+  /* Better padding for links */
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+a:hover,
+a:focus {
+  background-color: #3b82f6;
+  color: white;
+  outline: none;
+}
+
+/* Make navigation links look like clickable text */
+header nav a {
+  color: #f8fafc;
+  margin: 0 10px;
+  font-weight: bold;
+}
+
+header nav a:hover,
+header nav a:focus {
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+/* Main content wrapper (centered) */
+main {
+  margin: 40px auto;
+  /* More spacing from header */
+  padding: 0 20px;
+}
+
+/* Max-width container for topics */
+section {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 40px;
+  /* Generous padding (paging) */
+  margin-bottom: 30px;
+  border-radius: 12px;
+  /* Smoother corners */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  /* Premium soft shadow */
+}
+
+/* Wider container for projects */
+#projects {
+  max-width: 1200px;
+}
+
+h2 {
+  color: #0f172a;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 15px;
+  margin-bottom: 25px;
+}
+
+/* Lists */
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+ul li {
+  margin-bottom: 8px;
+}
+
+/* Images */
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: zoom-in;
+}
+
+img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Click-to-zoom lightbox effect (Pure CSS) */
+img:focus {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) !important;
+  z-index: 1000;
+  max-height: 85vh;
+  max-width: 85vw;
+  object-fit: contain;
+  box-shadow: 0 0 0 2000px rgba(0, 0, 0, 0.8) !important;
+  cursor: zoom-out;
+}
+
+/* About Section Text Expansion */
+#about p,
+#about ul,
+#about table {
+  font-size: 1.25rem;
+  line-height: 1.8;
+}
+
+/* Flexbox container for images */
+.about-images {
+  display: flex;
+  flex-wrap: wrap;
+  /* Prevents images from cropping on small screens */
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+/* CSS Grid 2-column image container */
+.image-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.image-grid-4 img {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+/* Responsive CSS Grid container */
+.projects-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+/* Flexbox container card */
+.project {
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Different background colors for each project */
+.project-green {
+  background-color: #f0fdf4;
+  /* Light green */
+}
+
+.project-blue {
+  background-color: #eff6ff;
+  /* Light blue */
+}
+
+.project-yellow {
+  background-color: #fffbeb;
+  /* Light yellow/amber */
+}
+
+.project-pink {
+  background-color: #fdf2f8;
+  /* Light pink */
+}
+
+.project h3 {
+  color: #334155;
+  margin-bottom: 15px;
+}
+
+.project img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: #e2e8f0;
+  margin: 30px 0;
+}
+
+/* Form */
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-family: inherit;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+input[type="submit"] {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 6px;
+  margin-top: 15px;
+  transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover,
+input[type="submit"]:focus {
+  background-color: #2563eb;
+  outline: none;
+}
+
+/* Vertical Flexbox wrapper */
+.skills-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 25px 0;
+}
+
+/* Individual skill block container */
+.skill-container {
+  background-color: #f8fafc;
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 4px solid #3b82f6;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+}
+
+.skill-container strong {
+  display: block;
+  font-size: 1.1em;
+  color: #0f172a;
+}
+
+.skill-bar {
+  background-color: #e2e8f0;
+  color: #1e293b;
+  padding: 4px 10px;
+  border-radius: 4px;
+  display: inline-block;
+  margin: 8px 0;
+  font-weight: bold;
+  font-size: 0.85em;
+}
+
+.skill-description {
+  margin: 0;
+  color: #475569;
+  font-size: 0.9em;
+}
+
+/* Individual Skill Colors */
+.html-skill {
+  background-color: #bfdbfe;
+}
+
+.css-skill {
+  background-color: #bbf7d0;
+}
+
+.java-skill {
+  background-color: #fef08a;
+}
+
+.ts-skill {
+  background-color: #fbcfe8;
+}
+
+.cs-skill {
+  background-color: #e9d5ff;
+}
+
+.py-skill {
+  background-color: #fed7aa;
+}
+
+/* Card-styled layout container */
+.section-card {
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  margin-top: 30px;
+}
+
+.about-card {
+  background-color: #e0e7ff !important;
+  /* Distinct light indigo/blue */
+}
+
+/* Timeline / My Journey */
+.timeline-card {
+  background-color: #fef3c7 !important;
+  /* Distinct light warm yellow/amber */
+}
+
+/* Footer styles at the bottom of the page */
+footer {
+  text-align: center;
+  padding: 30px;
+  background-color: #0f172a;
+  color: white;
+  margin-top: 60px;
+}
+
+footer a {
+  color: #f8fafc;
+  font-weight: bold;
+}
+
+footer a:hover,
+footer a:focus {
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+/* Media Queries for Mobile Responsiveness (Phase 6) */
+@media screen and (max-width: 600px) {
+  header nav a {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+  }
+
+  main {
+    margin: 20px 10px;
+    padding: 0;
+  }
+
+  section {
+    padding: 20px;
+    /* Reduced padding for mobile */
+  }
+
+  .about-images {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .image-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .projects-container {
+    grid-template-columns: 1fr;
+  }
+
+  .project img {
+    width: 100%;
+  }
+}
