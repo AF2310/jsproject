@@ -221,25 +221,139 @@ hr {
   margin: 30px 0;
 }
 
-/* Form */
+/* Form & Feedback Form Enhancements */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-weight: bold;
+  color: #0f172a;
+  display: block;
+  margin-bottom: 5px;
+}
+
 input[type="text"],
 input[type="email"],
+input[type="url"],
+select,
 textarea {
   width: 100%;
   padding: 12px;
-  margin-top: 8px;
-  border: 1px solid #cbd5e1;
+  margin-top: 4px;
+  border: 1px solid #cbd5e1; /* Normal: neutral border */
   border-radius: 6px;
   font-family: inherit;
+  font-size: 1rem;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Focus: strong visible outline/border for accessibility */
 input[type="text"]:focus,
 input[type="email"]:focus,
+input[type="url"]:focus,
+select:focus,
 textarea:focus {
   outline: none;
   border-color: #3b82f6;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+/* Error state: red border */
+input.is-invalid,
+select.is-invalid,
+textarea.is-invalid {
+  border-color: #ef4444;
+}
+
+input.is-invalid:focus,
+select.is-invalid:focus,
+textarea.is-invalid:focus {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+}
+
+/* Valid state: green border */
+input.is-valid,
+select.is-valid,
+textarea.is-valid {
+  border-color: #22c55e;
+}
+
+input.is-valid:focus,
+select.is-valid:focus,
+textarea.is-valid:focus {
+  border-color: #22c55e;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
+}
+
+/* Validation Feedback Messages */
+.error-message {
+  color: #ef4444;
+  font-size: 0.85rem;
+  margin-top: 5px;
+  min-height: 1.2rem;
+}
+
+.char-counter {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin-top: 5px;
+  text-align: right;
+}
+
+.char-counter.is-invalid {
+  color: #ef4444;
+}
+
+.char-counter.is-valid {
+  color: #22c55e;
+}
+
+.form-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.btn {
+  padding: 12px 24px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 1rem;
+}
+
+.btn-primary {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #2563eb;
+  outline: none;
+}
+
+.btn-secondary {
+  background-color: #e2e8f0;
+  color: #334155;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+  background-color: #cbd5e1;
+  outline: none;
+}
+
+#form-status {
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #22c55e; /* Success green */
+  min-height: 1.5rem;
 }
 
 input[type="submit"] {
