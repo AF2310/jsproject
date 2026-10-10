@@ -22,12 +22,52 @@ const charCount = document.getElementById('char-count');
 const formStatus = document.getElementById('form-status');
 const clearBtn = document.getElementById('clear-btn');
 
+// Helper functions for showing and clearing errors
+function showFieldError(inputElement, errorElement, message) {
+    inputElement.classList.add('is-invalid');
+    inputElement.classList.remove('is-valid');
+    errorElement.textContent = message;
+}
+
+function clearFieldError(inputElement, errorElement) {
+    inputElement.classList.remove('is-invalid');
+    inputElement.classList.add('is-valid');
+    errorElement.textContent = '';
+}
+
+// Validation function for Full Name
+function validateFullName() {
+    const value = fullNameInput.value.trim();
+    // \p{L} matches any letter from any language.
+    // Also allows spaces, apostrophes, and hyphens.
+    const nameRegex = /^[\p{L}\s\-']+$/u;
+
+    if (value.length < 2) {
+        showFieldError(fullNameInput, nameError, "Name must be at least 2 characters long.");
+        return false;
+    } else if (!nameRegex.test(value)) {
+        showFieldError(fullNameInput, nameError, "Name contains invalid characters.");
+        return false;
+    } else {
+        clearFieldError(fullNameInput, nameError);
+        return true;
+    }
+}
+
 // 2. Add submit event listener with e.preventDefault()
 if (feedbackForm) {
     feedbackForm.addEventListener('submit', function (e) {
         // Stop the form from reloading the page
         e.preventDefault();
         
-        console.log("Form submission prevented. Ready to implement validation logic.");
+        let isValid = true;
+
+        if (!validateFullName()) {
+            isValid = false;
+        }
+
+        if (isValid) {
+            console.log("Form is valid so far!");
+        }
     });
 }
