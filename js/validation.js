@@ -54,6 +54,24 @@ function validateFullName() {
     }
 }
 
+// Validation function for Email
+function validateEmail() {
+    const value = emailInput.value.trim();
+    // A simple regex to check for something@something.domain
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (value === "") {
+        showFieldError(emailInput, emailError, "Email is required.");
+        return false;
+    } else if (!emailRegex.test(value)) {
+        showFieldError(emailInput, emailError, "Please enter a valid email address.");
+        return false;
+    } else {
+        clearFieldError(emailInput, emailError);
+        return true;
+    }
+}
+
 // 2. Add submit event listener with e.preventDefault()
 if (feedbackForm) {
     feedbackForm.addEventListener('submit', function (e) {
@@ -63,6 +81,10 @@ if (feedbackForm) {
         let isValid = true;
 
         if (!validateFullName()) {
+            isValid = false;
+        }
+
+        if (!validateEmail()) {
             isValid = false;
         }
 
