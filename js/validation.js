@@ -72,6 +72,48 @@ function validateEmail() {
     }
 }
 
+// Validation function for Topic
+function validateTopic() {
+    const value = topicSelect.value;
+
+    if (!value || value === "") {
+        showFieldError(topicSelect, topicError, "Please select a topic.");
+        return false;
+    } else {
+        clearFieldError(topicSelect, topicError);
+        return true;
+    }
+}
+
+// Validation function for optional Website
+function validateWebsite() {
+    const value = websiteInput.value.trim();
+
+    // Optional field: if empty, clear errors and valid indicator
+    if (value === "") {
+        websiteInput.classList.remove('is-invalid');
+        websiteInput.classList.remove('is-valid');
+        websiteError.textContent = '';
+        return true;
+    }
+
+    let isValid = false;
+    try {
+        const url = new URL(value);
+        isValid = url.protocol === "http:" || url.protocol === "https:";
+    } catch (_) {
+        isValid = false;
+    }
+
+    if (!isValid) {
+        showFieldError(websiteInput, websiteError, "Please enter a valid URL (e.g. https://www.example.com).");
+        return false;
+    } else {
+        clearFieldError(websiteInput, websiteError);
+        return true;
+    }
+}
+
 // 2. Add submit event listener with e.preventDefault()
 if (feedbackForm) {
     feedbackForm.addEventListener('submit', function (e) {
@@ -85,6 +127,14 @@ if (feedbackForm) {
         }
 
         if (!validateEmail()) {
+            isValid = false;
+        }
+
+        if (!validateTopic()) {
+            isValid = false;
+        }
+
+        if (!validateWebsite()) {
             isValid = false;
         }
 
