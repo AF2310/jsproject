@@ -149,36 +149,90 @@ function validateWebsite() {
     }
 }
 
+let statusTimeout = null;
+
+// Reset form elements, validation classes, error messages, and counter
+function resetForm() {
+    if (feedbackForm) {
+        feedbackForm.reset();
+    }
+
+    // Clear validation classes from input fields
+    const inputs = [fullNameInput, emailInput, topicSelect, commentsInput, websiteInput];
+    inputs.forEach(input => {
+        if (input) {
+            input.classList.remove('is-invalid');
+            input.classList.remove('is-valid');
+        }
+    });
+
+    // Clear all field error messages
+    const errors = [nameError, emailError, topicError, commentsError, websiteError];
+    errors.forEach(err => {
+        if (err) {
+            err.textContent = '';
+        }
+    });
+
+    // Reset character counter display
+    if (charCount) {
+        charCount.textContent = '0';
+        if (charCount.parentElement) {
+            charCount.parentElement.classList.remove('is-invalid');
+            charCount.parentElement.classList.remove('is-valid');
+        }
+    }
+}
+
 // 2. Add submit event listener with e.preventDefault()
 if (feedbackForm) {
     feedbackForm.addEventListener('submit', function (e) {
         // Stop the form from reloading the page
         e.preventDefault();
         
-        let isValid = true;
+        const isNameValid = validateFullName();
+        const isEmailValid = validateEmail();
+        const isTopicValid = validateTopic();
+        const isCommentsValid = validateComments();
+        const isWebsiteValid = validateWebsite();
 
-        if (!validateFullName()) {
-            isValid = false;
+        const isFormValid = isNameValid && isEmailValid && isTopicValid && isCommentsValid && isWebsiteValid;
+
+        if (isFormValid) {
+            const submittedName = fullNameInput.value.trim();
+
+            if (formStatus) {
+                formStatus.textContent = `Thanks for your feedback, ${submittedName}!`;
+            }
+
+            // Reset field values, validation classes, errors, and counter
+            resetForm();
+
+            // Clear any active dismiss timer
+            if (statusTimeout) {
+                clearTimeout(statusTimeout);
+            }
+
+            // Remove success message automatically after 4 seconds
+            statusTimeout = setTimeout(() => {
+                if (formStatus) {
+                    formStatus.textContent = '';
+                }
+            }, 4000);
         }
+    });
+}
 
-        if (!validateEmail()) {
-            isValid = false;
+// Connect Clear button to restore complete initial state
+if (clearBtn) {
+    clearBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        resetForm();
+        if (statusTimeout) {
+            clearTimeout(statusTimeout);
         }
-
-        if (!validateTopic()) {
-            isValid = false;
-        }
-
-        if (!validateComments()) {
-            isValid = false;
-        }
-
-        if (!validateWebsite()) {
-            isValid = false;
-        }
-
-        if (isValid) {
-            console.log("Form is valid so far!");
+        if (formStatus) {
+            formStatus.textContent = '';
         }
     });
 }
