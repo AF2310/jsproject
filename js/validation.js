@@ -236,3 +236,40 @@ if (clearBtn) {
         }
     });
 }
+
+// 3. Connect field-level blur and change listeners for immediate feedback
+if (fullNameInput) {
+    fullNameInput.addEventListener('blur', validateFullName);
+    fullNameInput.addEventListener('input', () => {
+        if (fullNameInput.classList.contains('is-invalid')) {
+            validateFullName();
+        }
+    });
+}
+
+if (emailInput) {
+    emailInput.addEventListener('blur', validateEmail);
+    emailInput.addEventListener('input', () => {
+        if (emailInput.classList.contains('is-invalid')) {
+            validateEmail();
+        }
+    });
+}
+
+if (topicSelect) {
+    topicSelect.addEventListener('change', validateTopic);
+    topicSelect.addEventListener('blur', validateTopic);
+}
+
+if (commentsInput) {
+    commentsInput.addEventListener('blur', validateComments);
+}
+
+if (websiteInput) {
+    websiteInput.addEventListener('blur', validateWebsite);
+    websiteInput.addEventListener('input', () => {
+        if (websiteInput.classList.contains('is-invalid')) {
+            validateWebsite();
+        }
+    });
+}
