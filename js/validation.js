@@ -85,6 +85,41 @@ function validateTopic() {
     }
 }
 
+// Validation function for Comments (minimum 15 characters)
+function validateComments() {
+    const value = commentsInput.value.trim();
+
+    if (value.length < 15) {
+        showFieldError(commentsInput, commentsError, "Comments must be at least 15 characters long.");
+        return false;
+    } else {
+        clearFieldError(commentsInput, commentsError);
+        return true;
+    }
+}
+
+// Live character counter for Comments
+function updateCharCount() {
+    if (!commentsInput || !charCount) return;
+    const count = commentsInput.value.length;
+    charCount.textContent = count;
+
+    const counterContainer = charCount.parentElement;
+    if (counterContainer) {
+        if (count < 15) {
+            counterContainer.classList.add('is-invalid');
+            counterContainer.classList.remove('is-valid');
+        } else {
+            counterContainer.classList.remove('is-invalid');
+            counterContainer.classList.add('is-valid');
+        }
+    }
+}
+
+if (commentsInput) {
+    commentsInput.addEventListener('input', updateCharCount);
+}
+
 // Validation function for optional Website
 function validateWebsite() {
     const value = websiteInput.value.trim();
@@ -131,6 +166,10 @@ if (feedbackForm) {
         }
 
         if (!validateTopic()) {
+            isValid = false;
+        }
+
+        if (!validateComments()) {
             isValid = false;
         }
 
