@@ -10,7 +10,7 @@
     <!-- The <title> tag defines the name of the webpage displayed in the browser tab. -->
     <title>Personal Portfolio</title>
     <!-- This link connects our HTML file to our external CSS file where all the styling rules live -->
-    <link rel="stylesheet" href="style.css?v=3">
+    <link rel="stylesheet" href="css/style.css?v=3">
 </head>
 
 <body>
@@ -22,6 +22,7 @@
         <!-- Navigation links to jump to different sections of the page -->
         <nav>
             <a href="index.html#about">About Me</a> |
+            <a href="index.html#skills-showcase">Skills</a> |
             <!-- The href attribute points to the ID of another section, creating an in-page link that scrolls smoothly to that section. -->
             <a href="index.html#projects">My Projects</a> |
             <a href="feedback.html">Feedback</a> |
@@ -56,49 +57,41 @@
                     Robot.</li>
                 <li><strong>Future Goal:</strong> My goal is to get a stable job in the IT sector.</li>
             </ul>
+        </section>
 
-            <!-- Skill bars to show my proficiency in different languages -->
-            <h3>Stuff I know</h3>
-            <div class="skills-wrapper">
-                <!-- Each skill is grouped in its own div container -->
-                <div class="skill-container">
-                    <strong>HTML</strong>
-                    <!-- We use a div here that will be styled by CSS to look like a colorful progress bar -->
-                    <!-- The text inside this element is what the user actually sees on the screen. -->
-                    <div class="skill-bar html-skill">Beginner</div>
-                    <p class="skill-description">Structured this portfolio using semantic tags.</p>
+        <!-- Skills Showcase Section (Grade 4 Track) -->
+        <section id="skills-showcase" class="section-card skills-showcase-card">
+            <h2>Interactive Skills Showcase</h2>
+            <p>Explore my technical skill set with dynamic category filtering and multi-criteria sorting.</p>
+
+            <div class="skills-toolbar" role="toolbar" aria-label="Skills filtering and sorting controls">
+                <div class="filter-controls">
+                    <span class="toolbar-label" id="filter-label">Filter Category:</span>
+                    <div class="filter-buttons" role="group" aria-labelledby="filter-label">
+                        <button type="button" class="filter-btn active" data-category="all" aria-pressed="true">All Skills</button>
+                        <button type="button" class="filter-btn" data-category="Frontend" aria-pressed="false">Frontend</button>
+                        <button type="button" class="filter-btn" data-category="Backend" aria-pressed="false">Backend</button>
+                        <button type="button" class="filter-btn" data-category="Core Languages" aria-pressed="false">Core Languages</button>
+                        <button type="button" class="filter-btn" data-category="Tools & Security" aria-pressed="false">Tools & Security</button>
+                    </div>
                 </div>
-                <div class="skill-container">
-                    <strong>CSS</strong>
-                    <!-- The text inside this element is what the user actually sees on the screen. -->
-                    <div class="skill-bar css-skill">Beginner</div>
-                    <p class="skill-description">Built a responsive grid layout for the projects page.</p>
-                </div>
-                <div class="skill-container">
-                    <strong>Java</strong>
-                    <!-- The text inside this element is what the user actually sees on the screen. -->
-                    <div class="skill-bar java-skill">Beginner</div>
-                    <p class="skill-description">Developed a JavaFX fast-food kiosk app in a team.</p>
-                </div>
-                <div class="skill-container">
-                    <strong>TypeScript</strong>
-                    <!-- The text inside this element is what the user actually sees on the screen. -->
-                    <div class="skill-bar ts-skill">Beginner</div>
-                    <p class="skill-description">Built an Ancient Greek learning web app with React.</p>
-                </div>
-                <div class="skill-container">
-                    <strong>C#</strong>
-                    <!-- The text inside this element is what the user actually sees on the screen. -->
-                    <div class="skill-bar cs-skill">Beginner</div>
-                    <p class="skill-description">Created a Windows Forms app to manage .NET projects.</p>
-                </div>
-                <div class="skill-container">
-                    <strong>Python</strong>
-                    <!-- The text inside this element is what the user actually sees on the screen. -->
-                    <div class="skill-bar py-skill">Beginner</div>
-                    <p class="skill-description">Automated a security testing pipeline with local LLMs.</p>
+
+                <div class="sort-controls">
+                    <label for="skill-sort" class="toolbar-label">Sort By:</label>
+                    <select id="skill-sort" class="sort-select">
+                        <option value="proficiency-desc">Proficiency (High to Low)</option>
+                        <option value="experience-desc">Years Experience (High to Low)</option>
+                        <option value="name-asc">Name (A–Z)</option>
+                    </select>
                 </div>
             </div>
+
+            <div class="skills-results-info">
+                <p id="skills-counter" aria-live="polite">Showing 0 of 0 skills</p>
+            </div>
+
+            <!-- Dynamic container populated exclusively by JavaScript -->
+            <div id="skills-grid" class="skills-grid" aria-label="Skills List"></div>
         </section>
 
         <!-- Timeline Section: Using CSS to draw a vertical line and dots without images -->
