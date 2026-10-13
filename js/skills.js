@@ -76,3 +76,69 @@ const skillsData = [
         description: "Configuring containerized scanning pipelines and testing for common web vulnerabilities."
     }
 ];
+
+// 2. DOM Component Builder: creates a single .skill-card element
+function createSkillCard(skill) {
+    const card = document.createElement('article');
+    card.className = 'skill-card';
+    card.setAttribute('data-id', skill.id);
+    card.setAttribute('data-category', skill.category);
+
+    // Card Header: Name and Category Badge
+    const header = document.createElement('div');
+    header.className = 'skill-card-header';
+
+    const title = document.createElement('h3');
+    title.className = 'skill-card-title';
+    title.textContent = skill.name;
+
+    const badge = document.createElement('span');
+    badge.className = 'skill-badge';
+    badge.textContent = skill.category;
+
+    header.appendChild(title);
+    header.appendChild(badge);
+
+    // Card Meta: Proficiency Dots and Years of Experience
+    const meta = document.createElement('div');
+    meta.className = 'skill-meta';
+
+    const proficiencyWrapper = document.createElement('div');
+    proficiencyWrapper.className = 'skill-proficiency';
+    proficiencyWrapper.setAttribute('aria-label', `Proficiency level: ${skill.proficiency} out of 5`);
+
+    const profLabel = document.createElement('span');
+    profLabel.textContent = `Proficiency:`;
+    profLabel.style.fontWeight = '600';
+    proficiencyWrapper.appendChild(profLabel);
+
+    const dotsContainer = document.createElement('div');
+    dotsContainer.className = 'proficiency-dots';
+    dotsContainer.setAttribute('aria-hidden', 'true');
+
+    for (let i = 1; i <= 5; i++) {
+        const dot = document.createElement('span');
+        dot.className = `proficiency-dot ${i <= skill.proficiency ? 'filled' : ''}`;
+        dotsContainer.appendChild(dot);
+    }
+    proficiencyWrapper.appendChild(dotsContainer);
+
+    const exp = document.createElement('div');
+    exp.className = 'skill-experience';
+    exp.textContent = `${skill.yearsExperience} ${skill.yearsExperience === 1 ? 'year' : 'years'}`;
+
+    meta.appendChild(proficiencyWrapper);
+    meta.appendChild(exp);
+
+    // Card Description
+    const desc = document.createElement('p');
+    desc.className = 'skill-card-description';
+    desc.textContent = skill.description;
+
+    // Assemble Card
+    card.appendChild(header);
+    card.appendChild(meta);
+    card.appendChild(desc);
+
+    return card;
+}
