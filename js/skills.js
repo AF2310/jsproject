@@ -142,3 +142,26 @@ function createSkillCard(skill) {
 
     return card;
 }
+
+// 3. Dynamic Rendering: clears container and renders given array of skill objects
+function renderSkills(skills = skillsData) {
+    const grid = document.getElementById('skills-grid');
+    if (!grid) return;
+
+    // Clear current container content
+    grid.innerHTML = '';
+
+    if (!skills || skills.length === 0) {
+        const emptyState = document.createElement('div');
+        emptyState.className = 'skills-empty-state';
+        emptyState.textContent = 'No skills match the selected filter criteria.';
+        grid.appendChild(emptyState);
+        return;
+    }
+
+    // Loop through current collection and append cards
+    skills.forEach(skill => {
+        const cardElement = createSkillCard(skill);
+        grid.appendChild(cardElement);
+    });
+}
