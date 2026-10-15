@@ -165,3 +165,33 @@ function renderSkills(skills = skillsData) {
         grid.appendChild(cardElement);
     });
 }
+
+// 4. Filtering State and Controls Setup
+let currentCategory = 'all';
+
+function setupFilterControls() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    if (!filterButtons || filterButtons.length === 0) return;
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const selectedCategory = button.getAttribute('data-category');
+            if (!selectedCategory) return;
+
+            currentCategory = selectedCategory;
+
+            // Update aria-pressed attribute and active class across buttons
+            filterButtons.forEach(btn => {
+                const isActive = (btn === button);
+                btn.classList.toggle('active', isActive);
+                btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+            });
+        });
+    });
+}
+
+// Initialization function called by main.js
+function initSkills() {
+    renderSkills(skillsData);
+    setupFilterControls();
+}
