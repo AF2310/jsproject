@@ -169,6 +169,13 @@ function renderSkills(skills = skillsData) {
 // 4. Filtering State and Controls Setup
 let currentCategory = 'all';
 
+function filterSkillsByCategory(category) {
+    if (!category || category === 'all') {
+        return [...skillsData];
+    }
+    return skillsData.filter(skill => skill.category === category);
+}
+
 function setupFilterControls() {
     const filterButtons = document.querySelectorAll('.filter-btn');
     if (!filterButtons || filterButtons.length === 0) return;
@@ -186,6 +193,10 @@ function setupFilterControls() {
                 btn.classList.toggle('active', isActive);
                 btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
             });
+
+            // Filter data and update rendered cards
+            const filteredSkills = filterSkillsByCategory(currentCategory);
+            renderSkills(filteredSkills);
         });
     });
 }
