@@ -201,6 +201,22 @@ function setupFilterControls() {
     });
 }
 
+// 5. Sorting Logic: sorts a copy of the skills collection by selected criteria
+function sortSkills(skills, criteria) {
+    const list = [...skills];
+
+    switch (criteria) {
+        case 'proficiency-desc':
+            return list.sort((a, b) => b.proficiency - a.proficiency);
+        case 'experience-desc':
+            return list.sort((a, b) => b.yearsExperience - a.yearsExperience);
+        case 'name-asc':
+            return list.sort((a, b) => a.name.localeCompare(b.name));
+        default:
+            return list;
+    }
+}
+
 // Initialization function called by main.js
 function initSkills() {
     renderSkills(skillsData);
