@@ -168,6 +168,7 @@ function renderSkills(skills = skillsData) {
 
 // 4. Filtering State and Controls Setup
 let currentCategory = 'all';
+let currentSort = 'proficiency-desc';
 
 function filterSkillsByCategory(category) {
     if (!category || category === 'all') {
@@ -194,9 +195,8 @@ function setupFilterControls() {
                 btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
             });
 
-            // Filter data and update rendered cards
-            const filteredSkills = filterSkillsByCategory(currentCategory);
-            renderSkills(filteredSkills);
+            // Run combined filter & sort pipeline
+            updateSkillsDisplay();
         });
     });
 }
@@ -217,8 +217,37 @@ function sortSkills(skills, criteria) {
     }
 }
 
+function setupSortControls() {
+    const sortSelect = document.getElementById('skill-sort');
+    if (!sortSelect) return;
+
+    sortSelect.addEventListener('change', (e) => {
+        currentSort = e.target.value;
+        updateSkillsDisplay();
+    });
+}
+
+// 6. Combined State Pipeline: Filter -> Sort -> Counter -> Render
+function updateSkillsDisplay() {
+    // 1. Filter first from the source of truth data array
+    const filtered = filterSkillsByCategory(currentCategory);
+
+    // 2. Sort the filtered collection copy
+    const sorted = sortSkills(filtered, currentSort);
+
+    // 3. Update counter text feedback
+    const counterElement = document.getElementById('skills-counter');
+    if (counterElement) {
+        counterElement.textContent = `Showing ${sorted.length} of ${skillsData.length} skills`;
+    }
+
+    // 4. Render resulting cards
+    renderSkills(sorted);
+}
+
 // Initialization function called by main.js
 function initSkills() {
-    renderSkills(skillsData);
     setupFilterControls();
+    setupSortControls();
+    updateSkillsDisplay();
 }
