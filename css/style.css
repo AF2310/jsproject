@@ -514,7 +514,7 @@ input[type="submit"]:focus {
 }
 
 .filter-btn:focus-visible {
-  outline: 2px solid #2563eb;
+  outline: 3px solid #2563eb;
   outline-offset: 2px;
 }
 
@@ -522,8 +522,11 @@ input[type="submit"]:focus {
 .filter-btn[aria-pressed="true"] {
   background-color: #1d4ed8;
   color: #ffffff;
-  border-color: #1d4ed8;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  border-color: #1e40af;
+  font-weight: 700;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15), inset 0 -3px 0 0 #93c5fd;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .sort-controls {
@@ -540,11 +543,17 @@ input[type="submit"]:focus {
   color: #334155;
   font-size: 0.9rem;
   cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sort-select:hover {
+  border-color: #94a3b8;
 }
 
 .sort-select:focus-visible {
-  outline: 2px solid #2563eb;
+  outline: 3px solid #2563eb;
   outline-offset: 2px;
+  border-color: #2563eb;
 }
 
 .skills-results-info {
@@ -572,12 +581,18 @@ input[type="submit"]:focus {
   display: flex;
   flex-direction: column;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, outline 0.2s ease;
 }
 
-.skill-card:hover {
+.skill-card:hover,
+.skill-card:focus-visible {
   transform: translateY(-2px);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+}
+
+.skill-card:focus-visible {
+  outline: 3px solid #2563eb;
+  outline-offset: 2px;
 }
 
 .skill-card-header {

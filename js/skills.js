@@ -83,6 +83,8 @@ function createSkillCard(skill) {
     card.className = 'skill-card';
     card.setAttribute('data-id', skill.id);
     card.setAttribute('data-category', skill.category);
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('aria-label', `${skill.name} (${skill.category}), proficiency ${skill.proficiency} out of 5, ${skill.yearsExperience} years experience`);
 
     // Card Header: Name and Category Badge
     const header = document.createElement('div');
@@ -178,10 +180,10 @@ function filterSkillsByCategory(category) {
 }
 
 function setupFilterControls() {
-    const filterButtons = document.querySelectorAll('.filter-btn');
+    const filterButtons = Array.from(document.querySelectorAll('.filter-btn'));
     if (!filterButtons || filterButtons.length === 0) return;
 
-    filterButtons.forEach(button => {
+    filterButtons.forEach((button, index) => {
         button.addEventListener('click', () => {
             const selectedCategory = button.getAttribute('data-category');
             if (!selectedCategory) return;
@@ -197,6 +199,29 @@ function setupFilterControls() {
 
             // Run combined filter & sort pipeline
             updateSkillsDisplay();
+        });
+
+        // Accessible keyboard navigation across filter buttons
+        button.addEventListener('keydown', (e) => {
+            let targetButton = null;
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                e.preventDefault();
+                targetButton = filterButtons[(index + 1) % filterButtons.length];
+            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                targetButton = filterButtons[(index - 1 + filterButtons.length) % filterButtons.length];
+            } else if (e.key === 'Home') {
+                e.preventDefault();
+                targetButton = filterButtons[0];
+            } else if (e.key === 'End') {
+                e.preventDefault();
+                targetButton = filterButtons[filterButtons.length - 1];
+            }
+
+            if (targetButton) {
+                targetButton.focus();
+                targetButton.click();
+            }
         });
     });
 }
