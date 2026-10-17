@@ -156,7 +156,21 @@ function renderSkills(skills = skillsData) {
     if (!skills || skills.length === 0) {
         const emptyState = document.createElement('div');
         emptyState.className = 'skills-empty-state';
-        emptyState.textContent = 'No skills match the selected filter criteria.';
+        emptyState.setAttribute('role', 'status');
+
+        const message = document.createElement('p');
+        message.className = 'empty-state-message';
+        message.textContent = 'No skills match the selected filter criteria.';
+        emptyState.appendChild(message);
+
+        const resetBtn = document.createElement('button');
+        resetBtn.type = 'button';
+        resetBtn.className = 'empty-reset-btn';
+        resetBtn.textContent = 'Reset to All Skills';
+        resetBtn.setAttribute('aria-label', 'Clear active category filter and show all skills');
+        resetBtn.addEventListener('click', resetFilter);
+        emptyState.appendChild(resetBtn);
+
         grid.appendChild(emptyState);
         return;
     }
@@ -256,7 +270,20 @@ function setupSortControls() {
     });
 }
 
-// 6. Combined State Pipeline: Filter -> Sort -> Counter -> Render
+// 6. Reset Filter Action (used by empty state and keyboard shortcuts)
+function resetFilter() {
+    currentCategory = 'all';
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    filterButtons.forEach(btn => {
+        const isAll = btn.getAttribute('data-category') === 'all';
+        btn.classList.toggle('active', isAll);
+        btn.setAttribute('aria-pressed', isAll ? 'true' : 'false');
+        if (isAll) btn.focus();
+    });
+    updateSkillsDisplay();
+}
+
+// 7. Combined State Pipeline: Filter -> Sort -> Counter -> Render
 function updateSkillsDisplay() {
     // 1. Filter first from the source of truth data array
     const filtered = filterSkillsByCategory(currentCategory);
@@ -264,10 +291,11 @@ function updateSkillsDisplay() {
     // 2. Sort the filtered collection copy
     const sorted = sortSkills(filtered, currentSort);
 
-    // 3. Update counter text feedback
+    // 3. Update counter text feedback with category context for live announcement
     const counterElement = document.getElementById('skills-counter');
     if (counterElement) {
-        counterElement.textContent = `Showing ${sorted.length} of ${skillsData.length} skills`;
+        const categoryLabel = currentCategory === 'all' ? 'All' : currentCategory;
+        counterElement.textContent = `Showing ${sorted.length} of ${skillsData.length} skills (${categoryLabel})`;
     }
 
     // 4. Render resulting cards

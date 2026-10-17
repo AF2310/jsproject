@@ -683,11 +683,43 @@ input[type="submit"]:focus {
   text-align: center;
   padding: 40px 20px;
   background-color: #ffffff;
-  border: 1px dashed #cbd5e1;
+  border: 2px dashed #cbd5e1;
   border-radius: 8px;
   grid-column: 1 / -1;
   color: #64748b;
   font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.empty-state-message {
+  font-size: 1.05rem;
+  color: #475569;
+  margin: 0;
+}
+
+.empty-reset-btn {
+  padding: 10px 18px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #0f172a;
+  color: #ffffff;
+  border: 1px solid #0f172a;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.empty-reset-btn:hover {
+  background-color: #1e293b;
+  transform: translateY(-1px);
+}
+
+.empty-reset-btn:focus-visible {
+  outline: 3px solid #2563eb;
+  outline-offset: 2px;
 }
 
 /* Footer styles at the bottom of the page */
