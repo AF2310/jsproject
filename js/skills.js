@@ -161,9 +161,13 @@ function renderSkills(skills = skillsData) {
         return;
     }
 
-    // Loop through current collection and append cards
-    skills.forEach(skill => {
+    // Loop through current collection and append cards with subtle restrained stagger
+    const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    skills.forEach((skill, index) => {
         const cardElement = createSkillCard(skill);
+        if (!prefersReducedMotion) {
+            cardElement.style.animationDelay = `${Math.min(index * 0.03, 0.24)}s`;
+        }
         grid.appendChild(cardElement);
     });
 }
